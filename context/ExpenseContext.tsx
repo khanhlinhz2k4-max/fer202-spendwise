@@ -60,12 +60,41 @@ export function ExpenseProvider({ children }: { children: React.ReactNode }) {
   }, [user]);
 
   useEffect(() => {
-    if (user) {
-      fetchExpenses();
-    } else {
-      setExpenses([]);
+    let isSubscribed = true;
+
+    async function loadData() {
+      if (!user) {
+        setExpenses([]);
+        return;
+      }
+      setLoading(true);
+      try {
+        const { data, error } = await supabase
+          .from("expenses")
+          .select("*")
+          .order("spent_on", { ascending: false })
+          .order("created_at", { ascending: false });
+
+        if (isSubscribed) {
+          if (!error && data) {
+            setExpenses(sortExpenses(data as Expense[]));
+          }
+          setLoading(false);
+        }
+      } catch (err) {
+        console.error("Error in loadData:", err);
+        if (isSubscribed) {
+          setLoading(false);
+        }
+      }
     }
-  }, [user, fetchExpenses]);
+
+    loadData();
+
+    return () => {
+      isSubscribed = false;
+    };
+  }, [user]);
 
   const addExpense = async (newExpense: {
     amount: number;
