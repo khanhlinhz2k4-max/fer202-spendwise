@@ -33,26 +33,27 @@
 }
 
 :root {
-  /* Sage Editorial × Premium Fintech Color System */
-  --background: #F7F5EF;            /* Ivory Background */
-  --foreground: #222620;            /* Deep Charcoal Text */
-  --card: #FFFFFF;                  /* Crisp White for elevated cards */
-  --card-foreground: #222620;
+  /* Botanical Luxe × Editorial Palette */
+  /* Blush: #F0C4CB | Antique Rose: #C87D87 | Champagne: #FBEAD6 | Dried Thyme: #6B7556 | Bisque: #E5BCA9 */
+  --background: #FCFAF8;            /* Champagne Mist Clean Background */
+  --foreground: #282D24;            /* Deep Forest/Charcoal Text */
+  --card: #FFFFFF;                  /* Crisp Pure White for elevated cards */
+  --card-foreground: #282D24;
   --popover: #FFFFFF;
-  --popover-foreground: #222620;
-  --primary: #43583D;               /* Deep Sage */
-  --primary-foreground: #F7F5EF;    /* Ivory Text on Primary */
-  --secondary: #849C7D;             /* Muted Sage */
-  --secondary-foreground: #FFFFFF;
-  --muted: #EFECE4;                 /* Soft Warm Neutral */
-  --muted-foreground: #656C60;      /* Subdued Charcoal/Sage */
-  --accent: #D3DCBA;                /* Soft Celadon Green */
-  --accent-foreground: #222620;
-  --destructive: #B97865;           /* Terracotta Accent for deletion/errors */
+  --popover-foreground: #282D24;
+  --primary: #6B7556;               /* Dried Thyme */
+  --primary-foreground: #FFFFFF;    /* Pure White Text on Primary */
+  --secondary: #E5BCA9;             /* Bisque */
+  --secondary-foreground: #282D24;
+  --muted: #FBEAD6;                 /* Champagne Neutral */
+  --muted-foreground: #636B58;      /* Muted Thyme */
+  --accent: #F0C4CB;                /* Blush */
+  --accent-foreground: #282D24;
+  --destructive: #C87D87;           /* Antique Rose for delete/warnings */
   --destructive-foreground: #FFFFFF;
-  --border: #E5E0D4;                /* Clean Warm Border */
-  --input: #E5E0D4;                 /* Warm Input Border */
-  --ring: #607D51;                  /* Sage Green for focus states */
+  --border: #EFE7DE;                /* Warm Champagne Border */
+  --input: #EFE7DE;                 /* Warm Input Border */
+  --ring: #6B7556;                  /* Dried Thyme for focus states */
   --radius: 0.75rem;
 }
 
@@ -85,8 +86,8 @@
   }
   body {
     @apply bg-background text-foreground font-sans;
-    background-color: #F7F5EF;
-    color: #222620;
+    background-color: #FCFAF8;
+    color: #282D24;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }

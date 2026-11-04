@@ -12,6 +12,39 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 
 const CATEGORIES: Category[] = ["Food", "Transport", "Shopping", "Bills", "Other"];
 
+const CATEGORY_STYLES: Record<string, { badge: string; bar: string; dot: string; hex: string }> = {
+  Food: {
+    badge: "bg-[#FFEDD5] border-[#FDBA74] text-[#C2410C]",
+    bar: "bg-[#EA580C]",
+    dot: "bg-[#EA580C]",
+    hex: "#EA580C",
+  },
+  Shopping: {
+    badge: "bg-[#FDF2F8] border-[#FBCFE8] text-[#BE185D]",
+    bar: "bg-[#F472B6]",
+    dot: "bg-[#F472B6]",
+    hex: "#F472B6",
+  },
+  Bills: {
+    badge: "bg-[#FFF1F2] border-[#FECDD3] text-[#9F1239]",
+    bar: "bg-[#BE185D]",
+    dot: "bg-[#BE185D]",
+    hex: "#BE185D",
+  },
+  Transport: {
+    badge: "bg-[#F0F9FF] border-[#BAE6FD] text-[#0369A1]",
+    bar: "bg-[#0284C7]",
+    dot: "bg-[#0284C7]",
+    hex: "#0284C7",
+  },
+  Other: {
+    badge: "bg-[#F2F4ED] border-[#D3D8C8] text-[#3E4630]",
+    bar: "bg-[#6B7556]",
+    dot: "bg-[#6B7556]",
+    hex: "#6B7556",
+  },
+};
+
 function getTodayString(): string {
   const d = new Date();
   const year = d.getFullYear();
@@ -163,17 +196,18 @@ export default function ExpensesPage() {
   return (
     <div data-testid="expenses-page" className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
       {/* Page Header */}
-      <div className="mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#E5E0D4] pb-5">
+      <div className="mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#EFE7DE] pb-5">
         <div>
-          <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#D3DCBA]/40 border border-[#849C7D]/30 text-[11px] font-semibold text-[#43583D] uppercase tracking-wider">
-            <span>●</span> Ledger Management
+          <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#F0C4CB]/30 border border-[#F0C4CB] text-[11px] font-semibold text-[#C87D87] uppercase tracking-wider">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#C87D87]" />
+            Personal Ledger & Portfolio
           </div>
-          <h1 className="text-2xl sm:text-3xl font-bold text-[#222620] tracking-tight mt-1">
+          <h1 className="text-2xl sm:text-3xl font-bold text-[#282D24] tracking-tight mt-1">
             Expense Dashboard
           </h1>
         </div>
-        <div className="text-xs text-[#656C60] bg-white border border-[#E5E0D4] px-3.5 py-1.5 rounded-lg shadow-2xs self-start sm:self-auto">
-          Logged in as: <span className="font-semibold text-[#43583D]">{user.email}</span>
+        <div className="text-xs text-[#636B58] bg-white border border-[#EFE7DE] px-3.5 py-1.5 rounded-lg shadow-2xs self-start sm:self-auto">
+          Logged in as: <span className="font-semibold text-[#6B7556]">{user.email}</span>
         </div>
       </div>
 
@@ -181,13 +215,13 @@ export default function ExpensesPage() {
         {/* Left Column: Summary Overview & Add Expense Form (lg:col-span-5) */}
         <div className="lg:col-span-5 space-y-6">
           {/* Financial Overview (Summary Card) */}
-          <Card className="rounded-xl border border-[#E5E0D4] bg-white shadow-2xs overflow-hidden">
-            <div className="bg-[#43583D] text-[#F7F5EF] p-5">
+          <Card className="rounded-xl border border-[#EFE7DE] bg-white shadow-2xs overflow-hidden">
+            <div className="bg-[#6B7556] text-white p-5">
               <div className="flex items-center justify-between mb-1.5">
-                <span className="text-xs uppercase tracking-wider text-[#D3DCBA] font-semibold">
+                <span className="text-xs uppercase tracking-wider text-[#FBEAD6] font-semibold">
                   Currently Filtered Spending
                 </span>
-                <span className="px-2.5 py-0.5 rounded-md bg-white/15 text-[11px] font-medium text-white/95">
+                <span className="px-2.5 py-0.5 rounded-md bg-white/20 text-[11px] font-medium text-white">
                   <span data-testid="expense-count" className="font-numeric font-bold">{expenseCount}</span> entries
                 </span>
               </div>
@@ -201,46 +235,123 @@ export default function ExpensesPage() {
               </div>
             </div>
 
-            <CardContent className="p-5 space-y-3.5">
+            <CardContent className="p-5 space-y-4">
+              {/* Sơ đồ hình tròn (Interactive SVG Donut Chart) */}
+              {breakdownRows.length > 0 && totalAmount > 0 ? (
+                <div className="py-1 flex flex-col sm:flex-row items-center justify-center gap-5 border-b border-[#EFE7DE] pb-4">
+                  {/* SVG Donut Circle */}
+                  <div className="relative w-28 h-28 shrink-0">
+                    <svg className="w-full h-full -rotate-90" viewBox="0 0 100 100">
+                      {/* Background circle */}
+                      <circle
+                        cx="50"
+                        cy="50"
+                        r="38"
+                        fill="none"
+                        stroke="#EFE7DE"
+                        strokeWidth="11"
+                      />
+                      {/* Donut Segments */}
+                      {(() => {
+                        const circumference = 2 * Math.PI * 38;
+                        let accumulatedOffset = 0;
+                        return breakdownRows.map((row) => {
+                          const percentage = row.total / totalAmount;
+                          const strokeDasharray = `${percentage * circumference} ${circumference}`;
+                          const strokeDashoffset = -accumulatedOffset;
+                          accumulatedOffset += percentage * circumference;
+                          const catStyle = CATEGORY_STYLES[row.category] || CATEGORY_STYLES["Other"];
+
+                          return (
+                            <circle
+                              key={row.category}
+                              cx="50"
+                              cy="50"
+                              r="38"
+                              fill="none"
+                              stroke={catStyle.hex}
+                              strokeWidth="11"
+                              strokeDasharray={strokeDasharray}
+                              strokeDashoffset={strokeDashoffset}
+                              className="transition-all duration-500"
+                            />
+                          );
+                        });
+                      })()}
+                    </svg>
+                    {/* Donut Hole Center Stats */}
+                    <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none text-center">
+                      <span className="text-[9px] uppercase font-bold text-[#636B58] tracking-wider">Top Area</span>
+                      <span className="text-xs font-bold text-[#282D24] truncate max-w-[65px]">
+                        {breakdownRows[0]?.category}
+                      </span>
+                      <span className="text-[10px] font-numeric font-bold text-[#6B7556]">
+                        {totalAmount > 0 ? `${((breakdownRows[0]?.total / totalAmount) * 100).toFixed(0)}%` : ""}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Donut Quick Legend */}
+                  <div className="space-y-1.5 w-full sm:w-auto min-w-[130px]">
+                    {breakdownRows.slice(0, 3).map((row) => {
+                      const catStyle = CATEGORY_STYLES[row.category] || CATEGORY_STYLES["Other"];
+                      const pct = totalAmount > 0 ? (row.total / totalAmount) * 100 : 0;
+                      return (
+                        <div key={row.category} className="flex items-center justify-between text-xs gap-3">
+                          <div className="flex items-center gap-1.5">
+                            <span className={`w-2 h-2 rounded-full ${catStyle.dot} shrink-0`} />
+                            <span className="font-semibold text-[#282D24]">{row.category}</span>
+                          </div>
+                          <span className="font-numeric font-bold text-[11px] text-[#636B58]">
+                            {pct.toFixed(0)}%
+                          </span>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              ) : null}
+
               <div>
-                <h4 className="text-xs font-bold text-[#656C60] uppercase tracking-wider mb-2.5">
+                <h4 className="text-xs font-bold text-[#636B58] uppercase tracking-wider mb-2.5">
                   Category Breakdown
                 </h4>
                 <div data-testid="category-breakdown" className="space-y-2">
                   {breakdownRows.length === 0 ? (
-                    <p className="text-xs text-[#656C60] italic py-1">No category data for current view.</p>
+                    <p className="text-xs text-[#636B58] italic py-1">No category data for current view.</p>
                   ) : (
                     breakdownRows.map((row) => {
                       const percentage = totalAmount > 0 ? (row.total / totalAmount) * 100 : 0;
+                      const catStyle = CATEGORY_STYLES[row.category] || CATEGORY_STYLES["Other"];
                       return (
                         <div
                           key={row.category}
                           data-testid="breakdown-row"
-                          className="p-2.5 rounded-lg bg-[#F7F5EF]/80 border border-[#E5E0D4] space-y-1.5"
+                          className="p-2.5 rounded-lg bg-[#FCFAF8] border border-[#EFE7DE] space-y-1.5"
                         >
                           <div className="flex justify-between items-center text-xs">
                             <div className="flex items-center gap-2">
-                              <span className="w-2 h-2 rounded-full bg-[#607D51]" />
-                              <span data-testid="breakdown-name" className="font-semibold text-[#222620]">
+                              <span className={`w-2 h-2 rounded-full ${catStyle.dot}`} />
+                              <span data-testid="breakdown-name" className="font-semibold text-[#282D24]">
                                 {row.category}
                               </span>
                             </div>
                             <div className="flex items-center gap-2">
-                              <span className="px-1.5 py-0.5 rounded bg-black/5 text-[11px] font-numeric font-medium text-[#656C60] tabular-nums">
+                              <span className="px-1.5 py-0.5 rounded bg-black/5 text-[11px] font-numeric font-medium text-[#636B58] tabular-nums">
                                 {percentage.toFixed(0)}%
                               </span>
                               <span
                                 data-testid="breakdown-amount"
-                                className="font-numeric font-bold text-sm text-[#43583D] tracking-tight tabular-nums"
+                                className="font-numeric font-bold text-sm text-[#6B7556] tracking-tight tabular-nums"
                               >
                                 {formatAmount(row.total)}
                               </span>
                             </div>
                           </div>
-                          {/* Visual progress bar */}
-                          <div className="w-full bg-[#E5E0D4] h-1.5 rounded-full overflow-hidden">
+                          {/* Visual progress bar with distinctive category color */}
+                          <div className="w-full bg-[#EFE7DE] h-2 rounded-full overflow-hidden">
                             <div
-                              className="bg-[#607D51] h-full rounded-full transition-all duration-300"
+                              className={`${catStyle.bar} h-full rounded-full transition-all duration-300`}
                               style={{ width: `${Math.min(Math.max(percentage, 5), 100)}%` }}
                             />
                           </div>
@@ -254,11 +365,11 @@ export default function ExpensesPage() {
           </Card>
 
           {/* Add Expense Form Card */}
-          <Card className="rounded-xl border border-[#E5E0D4] bg-white shadow-2xs">
-            <CardHeader className="pb-3 border-b border-[#E5E0D4] px-5 pt-5">
+          <Card className="rounded-xl border border-[#EFE7DE] bg-white shadow-2xs">
+            <CardHeader className="pb-3 border-b border-[#EFE7DE] px-5 pt-5">
               <div className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-[#607D51]" />
-                <CardTitle className="text-base font-bold text-[#222620]">
+                <span className="w-2 h-2 rounded-full bg-[#6B7556]" />
+                <CardTitle className="text-base font-bold text-[#282D24]">
                   Add Expense
                 </CardTitle>
               </div>
@@ -273,9 +384,9 @@ export default function ExpensesPage() {
                 {expenseSuccess && (
                   <div
                     data-testid="expense-success"
-                    className="p-3 text-xs rounded-lg bg-[#D3DCBA]/40 text-[#43583D] border border-[#849C7D]/40 font-semibold flex items-center gap-2"
+                    className="p-3 text-xs rounded-lg bg-[#FBEAD6]/70 text-[#6B7556] border border-[#E5BCA9] font-semibold flex items-center gap-2"
                   >
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#607D51]" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#6B7556]" />
                     <span>{expenseSuccess}</span>
                   </div>
                 )}
@@ -283,16 +394,16 @@ export default function ExpensesPage() {
                 {errorExpense && (
                   <div
                     data-testid="error-expense"
-                    className="p-3 text-xs rounded-lg bg-[#B97865]/10 text-[#B97865] border border-[#B97865]/30 flex items-center gap-2"
+                    className="p-3 text-xs rounded-lg bg-[#C87D87]/15 text-[#C87D87] border border-[#C87D87]/40 flex items-center gap-2 font-semibold"
                   >
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#B97865]" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#C87D87]" />
                     <span>{errorExpense}</span>
                   </div>
                 )}
 
                 {/* Amount Field */}
                 <div className="space-y-1">
-                  <Label htmlFor="amount" className="text-[11px] uppercase tracking-wider text-[#656C60] font-semibold">
+                  <Label htmlFor="amount" className="text-[11px] uppercase tracking-wider text-[#636B58] font-semibold">
                     Amount ($)
                   </Label>
                   <Input
@@ -306,10 +417,10 @@ export default function ExpensesPage() {
                       if (expenseSuccess) setExpenseSuccess("");
                     }}
                     placeholder="0.00"
-                    className="rounded-lg border-[#E5E0D4] focus-visible:border-[#607D51] focus-visible:ring-[#607D51]/20 h-9.5 bg-[#F7F5EF]/30 text-sm font-numeric tabular-nums transition-all"
+                    className="rounded-lg border-[#EFE7DE] focus-visible:border-[#6B7556] focus-visible:ring-[#6B7556]/20 h-10 bg-[#FCFAF8] text-sm text-[#282D24] font-numeric tabular-nums transition-all"
                   />
                   {amountError && (
-                    <p data-testid="error-amount" className="text-xs text-[#B97865] font-medium mt-1">
+                    <p data-testid="error-amount" className="text-xs text-[#C87D87] font-medium mt-1">
                       {amountError}
                     </p>
                   )}
@@ -317,7 +428,7 @@ export default function ExpensesPage() {
 
                 {/* Category Field */}
                 <div className="space-y-1">
-                  <Label htmlFor="category" className="text-[11px] uppercase tracking-wider text-[#656C60] font-semibold">
+                  <Label htmlFor="category" className="text-[11px] uppercase tracking-wider text-[#636B58] font-semibold">
                     Category
                   </Label>
                   <select
@@ -328,9 +439,9 @@ export default function ExpensesPage() {
                       setCategory(e.target.value);
                       if (expenseSuccess) setExpenseSuccess("");
                     }}
-                    className="h-9.5 w-full rounded-lg border border-[#E5E0D4] bg-[#F7F5EF]/30 px-3 text-xs text-[#222620] font-medium outline-none focus-visible:border-[#607D51] focus-visible:ring-2 focus-visible:ring-[#607D51]/20 transition-all cursor-pointer"
+                    className="h-10 w-full rounded-lg border border-[#EFE7DE] bg-[#FCFAF8] px-3 text-xs text-[#282D24] font-medium outline-none focus-visible:border-[#6B7556] focus-visible:ring-2 focus-visible:ring-[#6B7556]/20 transition-all cursor-pointer"
                   >
-                    <option value="" className="text-[#656C60]">
+                    <option value="" className="text-[#636B58]">
                       Choose category
                     </option>
                     {CATEGORIES.map((cat) => (
@@ -340,7 +451,7 @@ export default function ExpensesPage() {
                     ))}
                   </select>
                   {categoryError && (
-                    <p data-testid="error-category" className="text-xs text-[#B97865] font-medium mt-1">
+                    <p data-testid="error-category" className="text-xs text-[#C87D87] font-medium mt-1">
                       {categoryError}
                     </p>
                   )}
@@ -348,7 +459,7 @@ export default function ExpensesPage() {
 
                 {/* Date Field */}
                 <div className="space-y-1">
-                  <Label htmlFor="spent-on" className="text-[11px] uppercase tracking-wider text-[#656C60] font-semibold">
+                  <Label htmlFor="spent-on" className="text-[11px] uppercase tracking-wider text-[#636B58] font-semibold">
                     Date
                   </Label>
                   <Input
@@ -360,10 +471,10 @@ export default function ExpensesPage() {
                       setSpentOn(e.target.value);
                       if (expenseSuccess) setExpenseSuccess("");
                     }}
-                    className="rounded-lg border-[#E5E0D4] focus-visible:border-[#607D51] focus-visible:ring-[#607D51]/20 h-9.5 bg-[#F7F5EF]/30 text-xs font-numeric transition-all"
+                    className="rounded-lg border-[#EFE7DE] focus-visible:border-[#6B7556] focus-visible:ring-[#6B7556]/20 h-10 bg-[#FCFAF8] text-xs text-[#282D24] font-numeric transition-all"
                   />
                   {dateError && (
-                    <p data-testid="error-date" className="text-xs text-[#B97865] font-medium mt-1">
+                    <p data-testid="error-date" className="text-xs text-[#C87D87] font-medium mt-1">
                       {dateError}
                     </p>
                   )}
@@ -371,7 +482,7 @@ export default function ExpensesPage() {
 
                 {/* Optional Note Field */}
                 <div className="space-y-1">
-                  <Label htmlFor="note" className="text-[11px] uppercase tracking-wider text-[#656C60] font-semibold">
+                  <Label htmlFor="note" className="text-[11px] uppercase tracking-wider text-[#636B58] font-semibold">
                     Note (Optional)
                   </Label>
                   <Input
@@ -384,10 +495,10 @@ export default function ExpensesPage() {
                       if (expenseSuccess) setExpenseSuccess("");
                     }}
                     placeholder="Short description"
-                    className="rounded-lg border-[#E5E0D4] focus-visible:border-[#607D51] focus-visible:ring-[#607D51]/20 h-9.5 bg-[#F7F5EF]/30 text-xs transition-all"
+                    className="rounded-lg border-[#EFE7DE] focus-visible:border-[#6B7556] focus-visible:ring-[#6B7556]/20 h-10 bg-[#FCFAF8] text-xs text-[#282D24] transition-all"
                   />
                   {noteError && (
-                    <p data-testid="error-note" className="text-xs text-[#B97865] font-medium mt-1">
+                    <p data-testid="error-note" className="text-xs text-[#C87D87] font-medium mt-1">
                       {noteError}
                     </p>
                   )}
@@ -397,7 +508,7 @@ export default function ExpensesPage() {
                 <Button
                   type="submit"
                   data-testid="btn-add-expense"
-                  className="w-full rounded-lg bg-[#43583D] hover:bg-[#607D51] text-[#F7F5EF] h-10 text-xs font-semibold uppercase tracking-wider transition-all shadow-xs cursor-pointer mt-2"
+                  className="w-full rounded-lg bg-[#6B7556] hover:bg-[#586146] text-white h-10 text-xs font-semibold uppercase tracking-wider transition-all shadow-xs cursor-pointer mt-2"
                   disabled={isAdding}
                 >
                   {isAdding ? "Saving..." : "Add Expense"}
@@ -410,20 +521,20 @@ export default function ExpensesPage() {
         {/* Right Column: Unified Filter Toolbar & Ledger History Table (lg:col-span-7) */}
         <div className="lg:col-span-7 space-y-6">
           {/* Filter Toolbar Card */}
-          <Card className="rounded-xl border border-[#E5E0D4] bg-white shadow-2xs p-4">
+          <Card className="rounded-xl border border-[#EFE7DE] bg-white shadow-2xs p-4">
             <div className="flex items-center justify-between mb-3">
-              <span className="text-xs font-bold uppercase tracking-wider text-[#656C60]">
+              <span className="text-xs font-bold uppercase tracking-wider text-[#636B58]">
                 Filter Records
               </span>
               {(filterCategory || filterMonth) && (
-                <span className="text-[11px] text-[#43583D] font-semibold px-2 py-0.5 rounded-md bg-[#D3DCBA]/40 border border-[#849C7D]/30">
+                <span className="text-[11px] text-[#C87D87] font-semibold px-2 py-0.5 rounded-md bg-[#F0C4CB]/30 border border-[#F0C4CB]">
                   Filters Active
                 </span>
               )}
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-12 gap-3 items-end">
               <div className="sm:col-span-5 space-y-1">
-                <Label htmlFor="filter-cat" className="text-[11px] text-[#656C60] uppercase font-semibold">
+                <Label htmlFor="filter-cat" className="text-[11px] text-[#636B58] uppercase font-semibold">
                   Category
                 </Label>
                 <select
@@ -431,7 +542,7 @@ export default function ExpensesPage() {
                   data-testid="filter-category"
                   value={filterCategory}
                   onChange={(e) => setFilterCategory(e.target.value)}
-                  className="h-9.5 w-full rounded-lg border border-[#E5E0D4] bg-[#F7F5EF]/40 px-3 text-xs text-[#222620] font-medium outline-none focus-visible:border-[#607D51] focus-visible:ring-2 focus-visible:ring-[#607D51]/20 transition-all cursor-pointer"
+                  className="h-10 w-full rounded-lg border border-[#EFE7DE] bg-[#FCFAF8] px-3 text-xs text-[#282D24] font-medium outline-none focus-visible:border-[#6B7556] focus-visible:ring-2 focus-visible:ring-[#6B7556]/20 transition-all cursor-pointer"
                 >
                   <option value="">All Categories</option>
                   {CATEGORIES.map((cat) => (
@@ -443,7 +554,7 @@ export default function ExpensesPage() {
               </div>
 
               <div className="sm:col-span-4 space-y-1">
-                <Label htmlFor="filter-mo" className="text-[11px] text-[#656C60] uppercase font-semibold">
+                <Label htmlFor="filter-mo" className="text-[11px] text-[#636B58] uppercase font-semibold">
                   Month
                 </Label>
                 <Input
@@ -452,7 +563,7 @@ export default function ExpensesPage() {
                   data-testid="filter-month"
                   value={filterMonth}
                   onChange={(e) => setFilterMonth(e.target.value)}
-                  className="h-9.5 text-xs rounded-lg border-[#E5E0D4] bg-[#F7F5EF]/40 focus-visible:border-[#607D51] font-numeric font-medium"
+                  className="h-10 text-xs rounded-lg border-[#EFE7DE] bg-[#FCFAF8] focus-visible:border-[#6B7556] font-numeric font-medium text-[#282D24]"
                 />
               </div>
 
@@ -461,7 +572,7 @@ export default function ExpensesPage() {
                   type="button"
                   data-testid="btn-clear-filters"
                   variant="outline"
-                  className="w-full h-9.5 rounded-lg text-xs font-semibold border-[#C9BF97] text-[#43583D] hover:bg-[#D3DCBA]/30 hover:border-[#607D51] transition-all cursor-pointer"
+                  className="w-full h-10 rounded-lg text-xs font-semibold border-[#E5BCA9] text-[#6B7556] hover:bg-[#FBEAD6]/50 hover:border-[#6B7556] transition-all cursor-pointer"
                   onClick={handleClearFilters}
                 >
                   Clear Filters
@@ -471,13 +582,13 @@ export default function ExpensesPage() {
           </Card>
 
           {/* Unified Ledger Container */}
-          <div className="rounded-xl border border-[#E5E0D4] bg-white shadow-2xs overflow-hidden">
+          <div className="rounded-xl border border-[#EFE7DE] bg-white shadow-2xs overflow-hidden">
             {/* Table Header */}
-            <div className="p-4 border-b border-[#E5E0D4] flex items-center justify-between bg-[#F7F5EF]/50">
-              <h2 className="text-base font-bold text-[#222620]">
+            <div className="p-4 border-b border-[#EFE7DE] flex items-center justify-between bg-[#FCFAF8]">
+              <h2 className="text-base font-bold text-[#282D24]">
                 Transaction History
               </h2>
-              <span className="text-xs font-semibold text-[#656C60] font-numeric px-2.5 py-0.5 rounded-full bg-white border border-[#E5E0D4]">
+              <span className="text-xs font-semibold text-[#636B58] font-numeric px-2.5 py-0.5 rounded-full bg-white border border-[#EFE7DE]">
                 Showing {filteredExpenses.length} of {expenses.length}
               </span>
             </div>
@@ -486,66 +597,69 @@ export default function ExpensesPage() {
             {filteredExpenses.length === 0 ? (
               <div
                 data-testid="expenses-empty"
-                className="text-center py-16 px-4 text-[#656C60] space-y-2"
+                className="text-center py-16 px-4 text-[#636B58] space-y-2"
               >
-                <div className="w-10 h-10 rounded-full bg-[#EFECE4] mx-auto flex items-center justify-center text-[#849C7D] font-bold text-base">
+                <div className="w-10 h-10 rounded-full bg-[#FBEAD6]/60 mx-auto flex items-center justify-center text-[#C87D87] font-bold text-base">
                   ∅
                 </div>
-                <p className="text-sm font-semibold text-[#222620]">No expenses found</p>
-                <p className="text-xs text-[#656C60] max-w-xs mx-auto">
+                <p className="text-sm font-semibold text-[#282D24]">No expenses found</p>
+                <p className="text-xs text-[#636B58] max-w-xs mx-auto">
                   Adjust your active filters or log a new transaction from the left panel.
                 </p>
               </div>
             ) : (
-              <div data-testid="expense-list" className="divide-y divide-[#E5E0D4]">
-                {filteredExpenses.map((expense: Expense) => (
-                  <div
-                    key={expense.id}
-                    data-testid="expense-item"
-                    className="p-3.5 sm:p-4 hover:bg-[#F7F5EF]/40 transition-colors flex flex-col sm:flex-row sm:items-center justify-between gap-3 group"
-                  >
-                    {/* Left: Fixed-width Category Badge & Details */}
-                    <div className="flex items-center gap-3 min-w-0 flex-1">
-                      {/* Fixed width category badge for vertical alignment */}
-                      <span
-                        data-testid="expense-category"
-                        className="shrink-0 w-24 text-center px-2.5 py-1 rounded-md text-xs font-bold bg-[#D3DCBA]/40 border border-[#849C7D]/30 text-[#43583D]"
-                      >
-                        {expense.category}
-                      </span>
+              <div data-testid="expense-list" className="divide-y divide-[#EFE7DE]">
+                {filteredExpenses.map((expense: Expense) => {
+                  const catStyle = CATEGORY_STYLES[expense.category] || CATEGORY_STYLES["Other"];
+                  return (
+                    <div
+                      key={expense.id}
+                      data-testid="expense-item"
+                      className="p-3.5 sm:p-4 hover:bg-[#FCFAF8]/80 transition-colors flex flex-col sm:flex-row sm:items-center justify-between gap-3 group"
+                    >
+                      {/* Left: Fixed-width Category Badge & Details */}
+                      <div className="flex items-center gap-3 min-w-0 flex-1">
+                        {/* Fixed width category badge with distinct Botanical Luxe colors */}
+                        <span
+                          data-testid="expense-category"
+                          className={`shrink-0 w-24 text-center px-2.5 py-1 rounded-full text-xs font-bold border ${catStyle.badge}`}
+                        >
+                          {expense.category}
+                        </span>
 
-                      {/* Note and Date */}
-                      <div className="min-w-0 flex-1">
-                        <div className="text-sm font-semibold text-[#222620] truncate">
-                          <span data-testid="expense-note">{expense.note || ""}</span>
-                        </div>
-                        <div className="text-xs text-[#849C7D] font-numeric mt-0.5">
-                          <span data-testid="expense-date">{expense.spent_on}</span>
+                        {/* Note and Date */}
+                        <div className="min-w-0 flex-1">
+                          <div className="text-sm font-semibold text-[#282D24] truncate">
+                            <span data-testid="expense-note">{expense.note || ""}</span>
+                          </div>
+                          <div className="text-xs text-[#636B58] font-numeric mt-0.5">
+                            <span data-testid="expense-date">{expense.spent_on}</span>
+                          </div>
                         </div>
                       </div>
-                    </div>
 
-                    {/* Right: Amount (Right-aligned) & Delete Button */}
-                    <div className="flex items-center justify-between sm:justify-end gap-3 sm:gap-4 shrink-0 pt-2 sm:pt-0 border-t sm:border-t-0 border-[#E5E0D4]/60">
-                      <span
-                        data-testid="expense-amount"
-                        className="font-numeric font-bold text-base sm:text-lg text-[#222620] tracking-tight tabular-nums text-right min-w-[90px]"
-                      >
-                        {formatAmount(expense.amount)}
-                      </span>
+                      {/* Right: Amount (Right-aligned) & Delete Button */}
+                      <div className="flex items-center justify-between sm:justify-end gap-3 sm:gap-4 shrink-0 pt-2 sm:pt-0 border-t sm:border-t-0 border-[#EFE7DE]">
+                        <span
+                          data-testid="expense-amount"
+                          className="font-numeric font-bold text-base sm:text-lg text-[#282D24] tracking-tight tabular-nums text-right min-w-[95px]"
+                        >
+                          {formatAmount(expense.amount)}
+                        </span>
 
-                      <Button
-                        data-testid="btn-delete-expense"
-                        variant="destructive"
-                        size="sm"
-                        onClick={() => handleDelete(expense.id)}
-                        className="rounded-lg bg-transparent hover:bg-[#B97865]/15 text-[#B97865] border border-[#B97865]/40 hover:border-[#B97865] px-3 h-8 text-xs font-semibold transition-all cursor-pointer shadow-2xs active:scale-95"
-                      >
-                        Delete
-                      </Button>
+                        <Button
+                          data-testid="btn-delete-expense"
+                          variant="destructive"
+                          size="sm"
+                          onClick={() => handleDelete(expense.id)}
+                          className="rounded-lg bg-transparent hover:bg-[#C87D87]/15 text-[#C87D87] border border-[#C87D87]/40 hover:border-[#C87D87] px-3 h-8 text-xs font-semibold transition-all cursor-pointer shadow-2xs active:scale-95"
+                        >
+                          Delete
+                        </Button>
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             )}
           </div>
