@@ -65,35 +65,35 @@ export default function LoginPage() {
 
   return (
     <div className="flex items-center justify-center min-h-[calc(100vh-4rem)] p-4 sm:p-6 bg-[#F7F5EF]">
-      <Card className="w-full max-w-md rounded-3xl border-[#E8E3D8] bg-white shadow-sm shadow-[#43583D]/5">
-        <CardHeader className="text-center space-y-2 pt-8 pb-4">
-          <div className="mx-auto w-12 h-12 rounded-full bg-[#D3DCBA]/35 border border-[#849C7D]/30 flex items-center justify-center text-[#43583D] font-serif font-bold text-xl mb-1 shadow-2xs">
+      <Card className="w-full max-w-md rounded-xl border border-[#E5E0D4] bg-white shadow-2xs">
+        <CardHeader className="text-center space-y-1.5 pt-7 pb-3">
+          <div className="mx-auto w-10 h-10 rounded-lg bg-[#43583D] flex items-center justify-center text-[#F7F5EF] font-bold text-base mb-1 shadow-xs">
             S
           </div>
-          <CardTitle className="font-serif text-3xl font-normal text-[#43583D]">Welcome Back</CardTitle>
-          <CardDescription className="text-sm text-[#6A7165]">
+          <CardTitle className="text-2xl font-bold text-[#222620]">Welcome Back</CardTitle>
+          <CardDescription className="text-xs text-[#656C60]">
             Access your personal expense ledger & analytics
           </CardDescription>
         </CardHeader>
-        <CardContent className="px-6 sm:px-8 pb-8">
+        <CardContent className="px-6 sm:px-7 pb-7">
           <form
             data-testid="login-form"
             noValidate
             onSubmit={handleSubmit}
-            className="space-y-4.5"
+            className="space-y-4"
           >
             {authError && (
               <div
                 data-testid="error-auth"
-                className="p-3 text-sm rounded-xl bg-[#B97865]/10 text-[#B97865] border border-[#B97865]/30 flex items-center gap-2"
+                className="p-3 text-xs rounded-lg bg-[#B97865]/10 text-[#B97865] border border-[#B97865]/30 flex items-center gap-2 font-medium"
               >
                 <span className="w-1.5 h-1.5 rounded-full bg-[#B97865]" />
                 <span>{authError}</span>
               </div>
             )}
 
-            <div className="space-y-1.5">
-              <Label htmlFor="email" className="text-xs uppercase tracking-wider text-[#6A7165] font-medium">
+            <div className="space-y-1">
+              <Label htmlFor="email" className="text-[11px] uppercase tracking-wider text-[#656C60] font-semibold">
                 Email Address
               </Label>
               <Input
@@ -106,7 +106,7 @@ export default function LoginPage() {
                   if (authError) setAuthError("");
                 }}
                 placeholder="name@example.com"
-                className="rounded-xl border-[#E8E3D8] focus-visible:border-[#607D51] focus-visible:ring-[#607D51]/20 h-11 bg-[#F7F5EF]/40 text-sm transition-all"
+                className="rounded-lg border-[#E5E0D4] focus-visible:border-[#607D51] focus-visible:ring-[#607D51]/20 h-10 bg-[#F7F5EF]/30 text-sm transition-all"
               />
               {emailError && (
                 <p data-testid="error-email" className="text-xs text-[#B97865] font-medium mt-1">
@@ -115,8 +115,8 @@ export default function LoginPage() {
               )}
             </div>
 
-            <div className="space-y-1.5">
-              <Label htmlFor="password" className="text-xs uppercase tracking-wider text-[#6A7165] font-medium">
+            <div className="space-y-1">
+              <Label htmlFor="password" className="text-[11px] uppercase tracking-wider text-[#656C60] font-semibold">
                 Password
               </Label>
               <Input
@@ -129,7 +129,7 @@ export default function LoginPage() {
                   if (authError) setAuthError("");
                 }}
                 placeholder="••••••••"
-                className="rounded-xl border-[#E8E3D8] focus-visible:border-[#607D51] focus-visible:ring-[#607D51]/20 h-11 bg-[#F7F5EF]/40 text-sm transition-all"
+                className="rounded-lg border-[#E5E0D4] focus-visible:border-[#607D51] focus-visible:ring-[#607D51]/20 h-10 bg-[#F7F5EF]/30 text-sm transition-all"
               />
               {passwordError && (
                 <p data-testid="error-password" className="text-xs text-[#B97865] font-medium mt-1">
@@ -141,14 +141,14 @@ export default function LoginPage() {
             <Button
               type="submit"
               data-testid="login-submit"
-              className="w-full rounded-full bg-[#43583D] hover:bg-[#607D51] text-[#F7F5EF] h-11 text-sm font-medium transition-all shadow-xs shadow-[#43583D]/25 active:scale-95 cursor-pointer mt-2"
+              className="w-full rounded-lg bg-[#43583D] hover:bg-[#607D51] text-[#F7F5EF] h-10 text-xs font-semibold uppercase tracking-wider transition-all shadow-xs active:scale-95 cursor-pointer mt-2"
               disabled={isSubmitting}
             >
               {isSubmitting ? "Authenticating..." : "Login"}
             </Button>
 
             <div className="pt-2 text-center">
-              <p className="text-xs text-[#6A7165]">
+              <p className="text-xs text-[#656C60]">
                 Don&apos;t have an account yet?{" "}
                 <Link
                   href="/register"

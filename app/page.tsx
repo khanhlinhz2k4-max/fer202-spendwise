@@ -5,34 +5,34 @@ import { Button } from "@/components/ui/button";
 export default function HomePage() {
   return (
     <div className="min-h-[calc(100vh-4rem)] flex flex-col justify-between">
-      {/* Hero Section with Editorial FinTech Aesthetic */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 pt-12 pb-16 lg:pt-20 lg:pb-24 w-full">
+      {/* Hero Section with Modern FinTech Aesthetic */}
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 pt-12 pb-16 lg:pt-16 lg:pb-20 w-full">
         <div className="text-center max-w-3xl mx-auto space-y-6">
           {/* Overline Badge */}
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#D3DCBA]/40 border border-[#849C7D]/40 text-xs font-semibold tracking-wider text-[#43583D] uppercase shadow-2xs">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#607D51] animate-pulse" />
-            Financial Clarity & Mindful Wealth
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#D3DCBA]/40 border border-[#849C7D]/40 text-xs font-semibold tracking-wider text-[#43583D] uppercase shadow-2xs">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#607D51]" />
+            Personal Finance & Wealth Clarity
           </div>
 
           {/* Main Title - Strictly Compliant with data-testid="home-title" and exact text SpendWise */}
           <h1
             data-testid="home-title"
-            className="font-serif text-5xl sm:text-6xl lg:text-7xl font-normal tracking-tight text-[#43583D] leading-none"
+            className="text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-[#222620] leading-none"
           >
             SpendWise
           </h1>
 
           {/* Application Description */}
-          <p className="text-base sm:text-lg text-[#6A7165] max-w-2xl mx-auto font-sans leading-relaxed">
-            Cultivate intentional spending habits. Seamlessly log everyday transactions, analyze seasonal expenditures, and observe where your resources flow with calm, editorial precision.
+          <p className="text-base sm:text-lg text-[#656C60] max-w-2xl mx-auto font-sans leading-relaxed">
+            Cultivate intentional spending habits. Seamlessly log everyday transactions, analyze seasonal expenditures, and observe where your resources flow with calm, modern precision.
           </p>
 
           {/* Call to Actions */}
-          <div className="pt-2 flex flex-wrap justify-center gap-3.5">
+          <div className="pt-2 flex flex-wrap justify-center gap-3">
             <Link href="/register">
               <Button
                 size="lg"
-                className="rounded-full bg-[#43583D] hover:bg-[#607D51] text-[#F7F5EF] px-7 h-12 text-sm font-medium shadow-sm shadow-[#43583D]/25 transition-all active:scale-95"
+                className="rounded-lg bg-[#43583D] hover:bg-[#607D51] text-[#F7F5EF] px-6 h-11 text-xs font-semibold uppercase tracking-wider shadow-xs transition-all active:scale-95 cursor-pointer"
               >
                 Get Started
               </Button>
@@ -41,7 +41,7 @@ export default function HomePage() {
               <Button
                 variant="outline"
                 size="lg"
-                className="rounded-full border-[#C9BF97] bg-white/70 text-[#43583D] hover:bg-[#D3DCBA]/30 hover:border-[#607D51] px-7 h-12 text-sm font-medium transition-all active:scale-95 shadow-2xs"
+                className="rounded-lg border-[#C9BF97] bg-white text-[#43583D] hover:bg-[#D3DCBA]/30 hover:border-[#607D51] px-6 h-11 text-xs font-semibold uppercase tracking-wider transition-all active:scale-95 shadow-2xs cursor-pointer"
               >
                 Go to Expenses
               </Button>
@@ -49,88 +49,88 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Editorial Visual Component: Tasteful Journal Preview Card */}
-        <div className="mt-14 max-w-2xl mx-auto rounded-3xl bg-white border border-[#E8E3D8] p-6 sm:p-8 shadow-sm shadow-[#43583D]/5">
-          <div className="flex items-center justify-between border-b border-[#E8E3D8] pb-4 mb-5">
+        {/* Visual Component: Modern Ledger Preview Card */}
+        <div className="mt-12 max-w-2xl mx-auto rounded-xl bg-white border border-[#E5E0D4] p-5 sm:p-6 shadow-2xs">
+          <div className="flex items-center justify-between border-b border-[#E5E0D4] pb-4 mb-4">
             <div className="space-y-0.5">
-              <span className="text-xs uppercase tracking-wider text-[#849C7D] font-medium">Monthly Horizon</span>
-              <p className="font-numeric text-3xl font-extrabold tracking-tight text-[#292D27] tabular-nums">$1234.00</p>
+              <span className="text-[11px] uppercase tracking-wider text-[#656C60] font-semibold">Monthly Horizon</span>
+              <p className="font-numeric text-3xl font-extrabold tracking-tight text-[#222620] tabular-nums">$1234.00</p>
             </div>
             <div className="flex gap-1.5">
-              <span className="px-3 py-1 rounded-full bg-[#D3DCBA]/40 text-[#43583D] text-xs font-medium">Food</span>
-              <span className="px-3 py-1 rounded-full bg-[#EFECE4] text-[#6A7165] text-xs font-medium">Bills</span>
-              <span className="px-3 py-1 rounded-full bg-[#EFECE4] text-[#6A7165] text-xs font-medium">Shopping</span>
+              <span className="px-2.5 py-1 rounded-md bg-[#D3DCBA]/40 text-[#43583D] text-xs font-semibold">Food</span>
+              <span className="px-2.5 py-1 rounded-md bg-[#EFECE4] text-[#656C60] text-xs font-semibold">Bills</span>
+              <span className="px-2.5 py-1 rounded-md bg-[#EFECE4] text-[#656C60] text-xs font-semibold">Shopping</span>
             </div>
           </div>
           <div className="grid grid-cols-3 gap-3 text-center">
-            <div className="p-3 rounded-2xl bg-[#F7F5EF] border border-[#E8E3D8]/60">
-              <span className="block text-[11px] text-[#6A7165] uppercase">Entries</span>
+            <div className="p-3 rounded-lg bg-[#F7F5EF] border border-[#E5E0D4]">
+              <span className="block text-[11px] text-[#656C60] uppercase font-semibold">Entries</span>
               <span className="text-lg font-numeric font-bold text-[#43583D] tabular-nums">24</span>
             </div>
-            <div className="p-3 rounded-2xl bg-[#F7F5EF] border border-[#E8E3D8]/60">
-              <span className="block text-[11px] text-[#6A7165] uppercase">Average</span>
+            <div className="p-3 rounded-lg bg-[#F7F5EF] border border-[#E5E0D4]">
+              <span className="block text-[11px] text-[#656C60] uppercase font-semibold">Average</span>
               <span className="text-lg font-numeric font-bold text-[#43583D] tabular-nums">$51.40</span>
             </div>
-            <div className="p-3 rounded-2xl bg-[#F7F5EF] border border-[#E8E3D8]/60">
-              <span className="block text-[11px] text-[#6A7165] uppercase">Top Area</span>
-              <span className="text-lg font-semibold text-[#43583D]">Food</span>
+            <div className="p-3 rounded-lg bg-[#F7F5EF] border border-[#E5E0D4]">
+              <span className="block text-[11px] text-[#656C60] uppercase font-semibold">Top Area</span>
+              <span className="text-lg font-bold text-[#43583D]">Food</span>
             </div>
           </div>
         </div>
       </section>
 
       {/* Feature Cards Grid Section */}
-      <section className="bg-white/60 border-t border-[#E8E3D8] py-14 lg:py-20">
+      <section className="bg-white/70 border-t border-[#E5E0D4] py-14 lg:py-16">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="text-center max-w-xl mx-auto mb-10 space-y-2">
-            <h2 className="font-serif text-2xl sm:text-3xl text-[#43583D]">Refined Tools for Daily Fiscal Peace</h2>
-            <p className="text-sm text-[#6A7165]">Built with deliberate constraints to keep your record-keeping friction-free.</p>
+            <h2 className="text-2xl sm:text-3xl font-bold text-[#222620]">Refined Tools for Daily Fiscal Peace</h2>
+            <p className="text-sm text-[#656C60]">Built with deliberate constraints to keep your record-keeping friction-free.</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {/* Feature 1 */}
-            <Card className="rounded-2xl border-[#E8E3D8] bg-white hover:border-[#849C7D] transition-all hover:shadow-md hover:shadow-[#43583D]/5 group">
-              <CardHeader className="space-y-2">
-                <div className="w-10 h-10 rounded-xl bg-[#D3DCBA]/30 border border-[#849C7D]/30 flex items-center justify-center text-[#43583D] font-serif font-semibold text-sm group-hover:bg-[#43583D] group-hover:text-white transition-colors">
+            <Card className="rounded-xl border border-[#E5E0D4] bg-white hover:border-[#849C7D] transition-all hover:shadow-xs group">
+              <CardHeader className="space-y-2 p-5">
+                <div className="w-9 h-9 rounded-lg bg-[#D3DCBA]/30 border border-[#849C7D]/30 flex items-center justify-center text-[#43583D] font-bold text-xs group-hover:bg-[#43583D] group-hover:text-white transition-colors">
                   01
                 </div>
-                <CardTitle className="font-serif text-xl text-[#292D27]">Add expenses</CardTitle>
-                <CardDescription className="text-xs text-[#849C7D] font-medium tracking-wide">Frictionless capture</CardDescription>
+                <CardTitle className="text-lg font-bold text-[#222620]">Add expenses</CardTitle>
+                <CardDescription className="text-xs text-[#849C7D] font-semibold tracking-wide">Frictionless capture</CardDescription>
               </CardHeader>
-              <CardContent>
-                <p className="text-sm text-[#6A7165] leading-relaxed">
+              <CardContent className="px-5 pb-5 pt-0">
+                <p className="text-sm text-[#656C60] leading-relaxed">
                   Record amounts, select standard categories, pinpoint transaction dates, and attach optional notes with immediate database synchronization.
                 </p>
               </CardContent>
             </Card>
 
             {/* Feature 2 */}
-            <Card className="rounded-2xl border-[#E8E3D8] bg-white hover:border-[#849C7D] transition-all hover:shadow-md hover:shadow-[#43583D]/5 group">
-              <CardHeader className="space-y-2">
-                <div className="w-10 h-10 rounded-xl bg-[#D3DCBA]/30 border border-[#849C7D]/30 flex items-center justify-center text-[#43583D] font-serif font-semibold text-sm group-hover:bg-[#43583D] group-hover:text-white transition-colors">
+            <Card className="rounded-xl border border-[#E5E0D4] bg-white hover:border-[#849C7D] transition-all hover:shadow-xs group">
+              <CardHeader className="space-y-2 p-5">
+                <div className="w-9 h-9 rounded-lg bg-[#D3DCBA]/30 border border-[#849C7D]/30 flex items-center justify-center text-[#43583D] font-bold text-xs group-hover:bg-[#43583D] group-hover:text-white transition-colors">
                   02
                 </div>
-                <CardTitle className="font-serif text-xl text-[#292D27]">Filter by month</CardTitle>
-                <CardDescription className="text-xs text-[#849C7D] font-medium tracking-wide">Instant temporal filters</CardDescription>
+                <CardTitle className="text-lg font-bold text-[#222620]">Filter by month</CardTitle>
+                <CardDescription className="text-xs text-[#849C7D] font-semibold tracking-wide">Instant temporal filters</CardDescription>
               </CardHeader>
-              <CardContent>
-                <p className="text-sm text-[#6A7165] leading-relaxed">
+              <CardContent className="px-5 pb-5 pt-0">
+                <p className="text-sm text-[#656C60] leading-relaxed">
                   Seamlessly isolate spending by month or specific category with combined filters that update your live ledger without page reloads.
                 </p>
               </CardContent>
             </Card>
 
             {/* Feature 3 */}
-            <Card className="rounded-2xl border-[#E8E3D8] bg-white hover:border-[#849C7D] transition-all hover:shadow-md hover:shadow-[#43583D]/5 group">
-              <CardHeader className="space-y-2">
-                <div className="w-10 h-10 rounded-xl bg-[#D3DCBA]/30 border border-[#849C7D]/30 flex items-center justify-center text-[#43583D] font-serif font-semibold text-sm group-hover:bg-[#43583D] group-hover:text-white transition-colors">
+            <Card className="rounded-xl border border-[#E5E0D4] bg-white hover:border-[#849C7D] transition-all hover:shadow-xs group">
+              <CardHeader className="space-y-2 p-5">
+                <div className="w-9 h-9 rounded-lg bg-[#D3DCBA]/30 border border-[#849C7D]/30 flex items-center justify-center text-[#43583D] font-bold text-xs group-hover:bg-[#43583D] group-hover:text-white transition-colors">
                   03
                 </div>
-                <CardTitle className="font-serif text-xl text-[#292D27]">See where money goes</CardTitle>
-                <CardDescription className="text-xs text-[#849C7D] font-medium tracking-wide">Dynamic summary</CardDescription>
+                <CardTitle className="text-lg font-bold text-[#222620]">See where money goes</CardTitle>
+                <CardDescription className="text-xs text-[#849C7D] font-semibold tracking-wide">Dynamic summary</CardDescription>
               </CardHeader>
-              <CardContent>
-                <p className="text-sm text-[#6A7165] leading-relaxed">
+              <CardContent className="px-5 pb-5 pt-0">
+                <p className="text-sm text-[#656C60] leading-relaxed">
                   Analyze dynamic category totals sorted from highest spend downwards, combined with exact two-decimal summary metrics.
                 </p>
               </CardContent>
