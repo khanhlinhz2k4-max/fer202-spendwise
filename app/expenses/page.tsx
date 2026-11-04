@@ -296,19 +296,20 @@ export default function ExpensesPage() {
                     </div>
                   </div>
 
-                  {/* Donut Quick Legend */}
-                  <div className="space-y-1.5 w-full sm:w-auto min-w-[130px]">
-                    {breakdownRows.slice(0, 3).map((row) => {
+                  {/* Donut Quick Legend - Displays all active categories with data */}
+                  <div className="space-y-1.5 w-full sm:w-auto min-w-[140px]">
+                    {breakdownRows.map((row) => {
                       const catStyle = CATEGORY_STYLES[row.category] || CATEGORY_STYLES["Other"];
                       const pct = totalAmount > 0 ? (row.total / totalAmount) * 100 : 0;
+                      const pctText = pct > 0 && pct < 1 ? "<1%" : `${pct.toFixed(0)}%`;
                       return (
                         <div key={row.category} className="flex items-center justify-between text-xs gap-3">
-                          <div className="flex items-center gap-1.5">
-                            <span className={`w-2 h-2 rounded-full ${catStyle.dot} shrink-0`} />
-                            <span className="font-semibold text-[#142217]">{row.category}</span>
+                          <div className="flex items-center gap-2 min-w-0">
+                            <span className={`w-2.5 h-2.5 rounded-full ${catStyle.dot} shrink-0`} />
+                            <span className="font-semibold text-[#142217] truncate">{row.category}</span>
                           </div>
-                          <span className="font-numeric font-bold text-[11px] text-[#3D5240]">
-                            {pct.toFixed(0)}%
+                          <span className="font-numeric font-bold text-[11px] text-[#3D5240] tabular-nums shrink-0">
+                            {pctText}
                           </span>
                         </div>
                       );
@@ -343,7 +344,7 @@ export default function ExpensesPage() {
                             </div>
                             <div className="flex items-center gap-2">
                               <span className="px-1.5 py-0.5 rounded bg-black/5 text-[11px] font-numeric font-medium text-[#3D5240] tabular-nums">
-                                {percentage.toFixed(0)}%
+                                {percentage > 0 && percentage < 1 ? "<1%" : `${percentage.toFixed(0)}%`}
                               </span>
                               <span
                                 data-testid="breakdown-amount"
