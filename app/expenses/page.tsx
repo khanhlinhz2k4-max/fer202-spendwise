@@ -348,7 +348,7 @@ export default function ExpensesPage() {
                               </span>
                               <span
                                 data-testid="breakdown-amount"
-                                className="w-24 text-left font-numeric font-bold text-sm text-[#2A6E3F] tracking-tight tabular-nums shrink-0"
+                                className="w-24 text-left font-numeric font-semibold text-sm text-[#2A6E3F] tracking-tight tabular-nums shrink-0"
                               >
                                 {formatAmount(row.total)}
                               </span>
@@ -676,7 +676,7 @@ export default function ExpensesPage() {
                       <div className="flex items-center justify-between sm:justify-end gap-3 sm:gap-4 shrink-0 pt-2 sm:pt-0 border-t sm:border-t-0 border-[#D6E0D6]">
                         <span
                           data-testid="expense-amount"
-                          className="font-numeric font-bold text-base sm:text-lg text-[#142217] tracking-tight tabular-nums text-left w-28 sm:w-32 shrink-0"
+                          className="font-numeric font-semibold text-sm text-[#142217] tracking-tight tabular-nums text-left w-28 sm:w-32 shrink-0"
                         >
                           {formatAmount(expense.amount)}
                         </span>
