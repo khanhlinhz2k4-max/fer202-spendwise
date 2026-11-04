@@ -308,7 +308,7 @@ export default function ExpensesPage() {
                             <span className={`w-2.5 h-2.5 rounded-full ${catStyle.dot} shrink-0`} />
                             <span className="font-semibold text-[#142217] truncate">{row.category}</span>
                           </div>
-                          <span className="font-numeric font-bold text-[11px] text-[#3D5240] tabular-nums shrink-0">
+                          <span className="font-numeric font-bold text-[11px] text-[#3D5240] tabular-nums shrink-0 w-8 text-right">
                             {pctText}
                           </span>
                         </div>
@@ -336,19 +336,19 @@ export default function ExpensesPage() {
                           className="p-2.5 rounded-lg bg-[#F8FAF8] border border-[#D6E0D6] space-y-1.5"
                         >
                           <div className="flex justify-between items-center text-xs">
-                            <div className="flex items-center gap-2">
-                              <span className={`w-2 h-2 rounded-full ${catStyle.dot}`} />
-                              <span data-testid="breakdown-name" className="font-semibold text-[#142217]">
+                            <div className="flex items-center gap-2 min-w-0">
+                              <span className={`w-2 h-2 rounded-full ${catStyle.dot} shrink-0`} />
+                              <span data-testid="breakdown-name" className="font-semibold text-[#142217] truncate">
                                 {row.category}
                               </span>
                             </div>
-                            <div className="flex items-center gap-2">
-                              <span className="px-1.5 py-0.5 rounded bg-black/5 text-[11px] font-numeric font-medium text-[#3D5240] tabular-nums">
+                            <div className="flex items-center gap-2.5 shrink-0">
+                              <span className="w-11 py-0.5 text-center justify-center inline-flex rounded bg-black/5 text-[11px] font-numeric font-medium text-[#3D5240] tabular-nums shrink-0">
                                 {percentage > 0 && percentage < 1 ? "<1%" : `${percentage.toFixed(0)}%`}
                               </span>
                               <span
                                 data-testid="breakdown-amount"
-                                className="font-numeric font-bold text-sm text-[#2A6E3F] tracking-tight tabular-nums"
+                                className="w-24 text-left font-numeric font-bold text-sm text-[#2A6E3F] tracking-tight tabular-nums shrink-0"
                               >
                                 {formatAmount(row.total)}
                               </span>
@@ -644,11 +644,11 @@ export default function ExpensesPage() {
                         </div>
                       </div>
 
-                      {/* Right: Amount (Right-aligned) & Delete Button */}
+                      {/* Right: Amount (Left-aligned column) & Delete Button */}
                       <div className="flex items-center justify-between sm:justify-end gap-3 sm:gap-4 shrink-0 pt-2 sm:pt-0 border-t sm:border-t-0 border-[#D6E0D6]">
                         <span
                           data-testid="expense-amount"
-                          className="font-numeric font-bold text-base sm:text-lg text-[#142217] tracking-tight tabular-nums text-right min-w-[95px]"
+                          className="font-numeric font-bold text-base sm:text-lg text-[#142217] tracking-tight tabular-nums text-left w-28 sm:w-32 shrink-0"
                         >
                           {formatAmount(expense.amount)}
                         </span>
@@ -658,7 +658,7 @@ export default function ExpensesPage() {
                           variant="destructive"
                           size="sm"
                           onClick={() => handleDelete(expense.id)}
-                          className="rounded-lg bg-transparent hover:bg-[#FEE2E2] text-[#DC2626] border border-[#FCA5A5] hover:border-[#DC2626] px-3 h-8 text-xs font-semibold transition-all cursor-pointer shadow-2xs active:scale-95"
+                          className="rounded-lg bg-transparent hover:bg-[#FEE2E2] text-[#DC2626] border border-[#FCA5A5] hover:border-[#DC2626] px-3 h-8 text-xs font-semibold transition-all cursor-pointer shadow-2xs active:scale-95 shrink-0 w-[64px]"
                         >
                           Delete
                         </Button>
