@@ -99,3 +99,18 @@
   font-variant-numeric: tabular-nums lining-nums;
   letter-spacing: -0.02em;
 }
+
+/* Polished calendar icon & smooth picker interaction */
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="month"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  opacity: 0.7;
+  filter: invert(30%) sepia(20%) saturate(800%) hue-rotate(95deg) brightness(85%);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator:hover,
+input[type="month"]::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
+  transform: scale(1.08);
+}

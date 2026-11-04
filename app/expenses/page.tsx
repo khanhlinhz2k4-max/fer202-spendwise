@@ -437,25 +437,38 @@ export default function ExpensesPage() {
                   <Label htmlFor="category" className="text-[11px] uppercase tracking-wider text-[#3D5240] font-semibold">
                     Category
                   </Label>
-                  <select
-                    id="category"
-                    data-testid="select-category"
-                    value={category}
-                    onChange={(e) => {
-                      setCategory(e.target.value);
-                      if (expenseSuccess) setExpenseSuccess("");
-                    }}
-                    className="h-10 w-full rounded-lg border border-[#CAD7CA] bg-white px-3 text-xs text-[#142217] font-medium outline-none focus-visible:border-[#2A6E3F] focus-visible:ring-2 focus-visible:ring-[#2A6E3F]/20 transition-all cursor-pointer"
-                  >
-                    <option value="" className="text-[#3D5240]">
-                      Choose category
-                    </option>
-                    {CATEGORIES.map((cat) => (
-                      <option key={cat} value={cat}>
-                        {cat}
+                  <div className="relative group">
+                    <select
+                      id="category"
+                      data-testid="select-category"
+                      value={category}
+                      onChange={(e) => {
+                        setCategory(e.target.value);
+                        if (expenseSuccess) setExpenseSuccess("");
+                      }}
+                      className="h-10 w-full appearance-none rounded-lg border border-[#CAD7CA] bg-white pl-3.5 pr-10 text-xs text-[#142217] font-medium outline-none hover:border-[#2A6E3F] focus-visible:border-[#2A6E3F] focus-visible:ring-2 focus-visible:ring-[#2A6E3F]/20 transition-all cursor-pointer shadow-2xs"
+                    >
+                      <option value="" className="text-[#3D5240] bg-white py-2">
+                        Choose category
                       </option>
-                    ))}
-                  </select>
+                      {CATEGORIES.map((cat) => (
+                        <option key={cat} value={cat} className="text-[#142217] bg-white py-2">
+                          {cat}
+                        </option>
+                      ))}
+                    </select>
+                    {/* Perfectly centered custom SVG chevron icon */}
+                    <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3.5 text-[#4A604D] group-hover:text-[#2A6E3F] transition-colors">
+                      <svg
+                        className="w-4 h-4 stroke-[2.25]"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                      </svg>
+                    </div>
+                  </div>
                   {categoryError && (
                     <p data-testid="error-category" className="text-xs text-[#DC2626] font-medium mt-1">
                       {categoryError}
@@ -543,20 +556,35 @@ export default function ExpensesPage() {
                 <Label htmlFor="filter-cat" className="text-[11px] text-[#3D5240] uppercase font-semibold">
                   Category
                 </Label>
-                <select
-                  id="filter-cat"
-                  data-testid="filter-category"
-                  value={filterCategory}
-                  onChange={(e) => setFilterCategory(e.target.value)}
-                  className="h-10 w-full rounded-lg border border-[#CAD7CA] bg-white px-3 text-xs text-[#142217] font-medium outline-none focus-visible:border-[#2A6E3F] focus-visible:ring-2 focus-visible:ring-[#2A6E3F]/20 transition-all cursor-pointer"
-                >
-                  <option value="">All Categories</option>
-                  {CATEGORIES.map((cat) => (
-                    <option key={cat} value={cat}>
-                      {cat}
+                <div className="relative group">
+                  <select
+                    id="filter-cat"
+                    data-testid="filter-category"
+                    value={filterCategory}
+                    onChange={(e) => setFilterCategory(e.target.value)}
+                    className="h-10 w-full appearance-none rounded-lg border border-[#CAD7CA] bg-white pl-3.5 pr-10 text-xs text-[#142217] font-medium outline-none hover:border-[#2A6E3F] focus-visible:border-[#2A6E3F] focus-visible:ring-2 focus-visible:ring-[#2A6E3F]/20 transition-all cursor-pointer shadow-2xs"
+                  >
+                    <option value="" className="text-[#3D5240] bg-white py-2">
+                      All Categories
                     </option>
-                  ))}
-                </select>
+                    {CATEGORIES.map((cat) => (
+                      <option key={cat} value={cat} className="text-[#142217] bg-white py-2">
+                        {cat}
+                      </option>
+                    ))}
+                  </select>
+                  {/* Perfectly centered custom SVG chevron icon */}
+                  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3.5 text-[#4A604D] group-hover:text-[#2A6E3F] transition-colors">
+                    <svg
+                      className="w-4 h-4 stroke-[2.25]"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                    </svg>
+                  </div>
+                </div>
               </div>
 
               <div className="sm:col-span-4 space-y-1">
@@ -569,7 +597,7 @@ export default function ExpensesPage() {
                   data-testid="filter-month"
                   value={filterMonth}
                   onChange={(e) => setFilterMonth(e.target.value)}
-                  className="h-10 text-xs rounded-lg border-[#CAD7CA] bg-white focus-visible:border-[#2A6E3F] font-numeric font-medium text-[#142217]"
+                  className="h-10 text-xs rounded-lg border-[#CAD7CA] bg-white focus-visible:border-[#2A6E3F] hover:border-[#2A6E3F] font-numeric font-medium text-[#142217] cursor-pointer shadow-2xs transition-all"
                 />
               </div>
 
