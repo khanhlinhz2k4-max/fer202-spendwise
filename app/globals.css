@@ -33,27 +33,27 @@
 }
 
 :root {
-  /* Botanical Luxe × Editorial Palette */
-  /* Blush: #F0C4CB | Antique Rose: #C87D87 | Champagne: #FBEAD6 | Dried Thyme: #6B7556 | Bisque: #E5BCA9 */
-  --background: #FCFAF8;            /* Champagne Mist Clean Background */
-  --foreground: #282D24;            /* Deep Forest/Charcoal Text */
-  --card: #FFFFFF;                  /* Crisp Pure White for elevated cards */
-  --card-foreground: #282D24;
+  /* Chinese Traditional Green Series Palette (中国传统色·绿色系) */
+  /* Imperial Green: #2A6E3F | Peacock Emerald: #007D62 | Bamboo Shoot: #84A740 | Jade: #53976F | Moss: #788A6F */
+  --background: #F8FAF8;            /* Crisp Pure Pale Mint-White */
+  --foreground: #162619;            /* Deep Forest Pine Charcoal Text (WCAG AAA High Contrast) */
+  --card: #FFFFFF;                  /* Pure Crisp White for elevated cards */
+  --card-foreground: #162619;
   --popover: #FFFFFF;
-  --popover-foreground: #282D24;
-  --primary: #6B7556;               /* Dried Thyme */
+  --popover-foreground: #162619;
+  --primary: #2A6E3F;               /* 官绿 (Imperial Deep Green) */
   --primary-foreground: #FFFFFF;    /* Pure White Text on Primary */
-  --secondary: #E5BCA9;             /* Bisque */
-  --secondary-foreground: #282D24;
-  --muted: #FBEAD6;                 /* Champagne Neutral */
-  --muted-foreground: #636B58;      /* Muted Thyme */
-  --accent: #F0C4CB;                /* Blush */
-  --accent-foreground: #282D24;
-  --destructive: #C87D87;           /* Antique Rose for delete/warnings */
+  --secondary: #53976F;             /* 三绿 (Jade Green) */
+  --secondary-foreground: #FFFFFF;
+  --muted: #EEF3EE;                 /* Muted Pale Sage */
+  --muted-foreground: #4B634F;      /* Muted Pine */
+  --accent: #007D62;                /* 孔雀绿 (Peacock Emerald) */
+  --accent-foreground: #FFFFFF;
+  --destructive: #DC2626;           /* Crisp High-Contrast Crimson for delete/warnings */
   --destructive-foreground: #FFFFFF;
-  --border: #EFE7DE;                /* Warm Champagne Border */
-  --input: #EFE7DE;                 /* Warm Input Border */
-  --ring: #6B7556;                  /* Dried Thyme for focus states */
+  --border: #DDE5DD;                /* Crisp Light Pine Border */
+  --input: #DDE5DD;                 /* Crisp Input Border */
+  --ring: #2A6E3F;                  /* Imperial Green for focus states */
   --radius: 0.75rem;
 }
 
@@ -86,8 +86,8 @@
   }
   body {
     @apply bg-background text-foreground font-sans;
-    background-color: #FCFAF8;
-    color: #282D24;
+    background-color: #F8FAF8;
+    color: #162619;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }

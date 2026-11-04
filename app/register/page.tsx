@@ -78,10 +78,10 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="min-h-[calc(100vh-4rem)] flex items-center justify-center p-4 sm:p-6 lg:p-8 bg-[#FCFAF8]">
-      <div className="w-full max-w-4xl rounded-2xl border border-[#EFE7DE] bg-white shadow-sm overflow-hidden grid grid-cols-1 md:grid-cols-12">
-        {/* Left Column: Botanical Luxe Branding Showcase */}
-        <div className="md:col-span-5 bg-[#6B7556] text-white p-7 sm:p-9 flex flex-col justify-between relative overflow-hidden">
+    <div className="min-h-[calc(100vh-4rem)] flex items-center justify-center p-4 sm:p-6 lg:p-8 bg-[#F8FAF8]">
+      <div className="w-full max-w-4xl rounded-2xl border border-[#D6E0D6] bg-white shadow-sm overflow-hidden grid grid-cols-1 md:grid-cols-12">
+        {/* Left Column: Chinese Traditional Green Branding Showcase */}
+        <div className="md:col-span-5 bg-[#2A6E3F] text-white p-7 sm:p-9 flex flex-col justify-between relative overflow-hidden">
           <div className="space-y-6 relative z-10">
             <div className="flex items-center gap-2.5">
               <span className="w-8 h-8 rounded-lg bg-white/20 flex items-center justify-center text-white font-bold text-sm">
@@ -93,25 +93,25 @@ export default function RegisterPage() {
             </div>
 
             <div className="space-y-2 pt-4">
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-white/15 text-[11px] font-semibold text-[#FBEAD6] uppercase tracking-wider">
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-white/15 text-[11px] font-semibold text-[#E6F6F2] uppercase tracking-wider">
                 Begin Mindful Spending
               </span>
               <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-white leading-tight">
                 Cultivate peace with your resources.
               </h2>
-              <p className="text-xs sm:text-sm text-[#FBEAD6]/90 leading-relaxed pt-1">
+              <p className="text-xs sm:text-sm text-[#E6F6F2]/90 leading-relaxed pt-1">
                 Open your encrypted personal ledger. Seamlessly capture daily expenses with total privacy.
               </p>
             </div>
           </div>
 
-          <div className="pt-8 border-t border-white/20 space-y-2 text-xs text-[#FBEAD6]/80 relative z-10">
+          <div className="pt-8 border-t border-white/20 space-y-2 text-xs text-[#E6F6F2]/80 relative z-10">
             <div className="flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#F0C4CB]" />
+              <span className="w-1.5 h-1.5 rounded-full bg-[#789E2D]" />
               <span>Dedicated User Data Vault</span>
             </div>
             <div className="flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#E5BCA9]" />
+              <span className="w-1.5 h-1.5 rounded-full bg-[#53976F]" />
               <span>Instant Category Intelligence</span>
             </div>
           </div>
@@ -120,8 +120,8 @@ export default function RegisterPage() {
         {/* Right Column: Registration Form */}
         <div className="md:col-span-7 p-7 sm:p-9 flex flex-col justify-center">
           <div className="mb-6 space-y-1">
-            <h3 className="text-2xl font-bold tracking-tight text-[#282D24]">Open an Account</h3>
-            <p className="text-xs text-[#636B58]">
+            <h3 className="text-2xl font-bold tracking-tight text-[#142217]">Open an Account</h3>
+            <p className="text-xs text-[#3D5240]">
               Create a private ledger to record your personal spending
             </p>
           </div>
@@ -135,9 +135,9 @@ export default function RegisterPage() {
             {authError && (
               <div
                 data-testid="error-auth"
-                className="p-3 text-xs rounded-lg bg-[#C87D87]/15 text-[#C87D87] border border-[#C87D87]/40 flex items-center gap-2 font-semibold"
+                className="p-3 text-xs rounded-lg bg-[#FEE2E2] text-[#DC2626] border border-[#FCA5A5] flex items-center gap-2 font-semibold"
               >
-                <span className="w-1.5 h-1.5 rounded-full bg-[#C87D87]" />
+                <span className="w-1.5 h-1.5 rounded-full bg-[#DC2626]" />
                 <span>{authError}</span>
               </div>
             )}
@@ -145,15 +145,15 @@ export default function RegisterPage() {
             {successMessage && (
               <div
                 data-testid="form-success"
-                className="p-3 text-xs rounded-lg bg-[#E5BCA9]/35 text-[#7C4631] border border-[#E5BCA9] font-semibold flex items-center gap-2"
+                className="p-3 text-xs rounded-lg bg-[#EDF5EE] text-[#194D29] border border-[#9EC2A8] font-semibold flex items-center gap-2"
               >
-                <span className="w-1.5 h-1.5 rounded-full bg-[#6B7556]" />
+                <span className="w-1.5 h-1.5 rounded-full bg-[#2A6E3F]" />
                 <span>{successMessage}</span>
               </div>
             )}
 
             <div className="space-y-1">
-              <Label htmlFor="email" className="text-[11px] uppercase tracking-wider text-[#636B58] font-semibold">
+              <Label htmlFor="email" className="text-[11px] uppercase tracking-wider text-[#3D5240] font-semibold">
                 Email Address
               </Label>
               <Input
@@ -166,17 +166,17 @@ export default function RegisterPage() {
                   if (authError) setAuthError("");
                 }}
                 placeholder="name@example.com"
-                className="rounded-lg border-[#EFE7DE] focus-visible:border-[#6B7556] focus-visible:ring-[#6B7556]/20 h-10 bg-[#FCFAF8] text-sm text-[#282D24] transition-all"
+                className="rounded-lg border-[#CAD7CA] focus-visible:border-[#2A6E3F] focus-visible:ring-[#2A6E3F]/20 h-10 bg-white text-sm text-[#142217] transition-all"
               />
               {emailError && (
-                <p data-testid="error-email" className="text-xs text-[#C87D87] font-medium mt-1">
+                <p data-testid="error-email" className="text-xs text-[#DC2626] font-medium mt-1">
                   {emailError}
                 </p>
               )}
             </div>
 
             <div className="space-y-1">
-              <Label htmlFor="password" className="text-[11px] uppercase tracking-wider text-[#636B58] font-semibold">
+              <Label htmlFor="password" className="text-[11px] uppercase tracking-wider text-[#3D5240] font-semibold">
                 Password
               </Label>
               <Input
@@ -189,17 +189,17 @@ export default function RegisterPage() {
                   if (authError) setAuthError("");
                 }}
                 placeholder="At least 6 characters"
-                className="rounded-lg border-[#EFE7DE] focus-visible:border-[#6B7556] focus-visible:ring-[#6B7556]/20 h-10 bg-[#FCFAF8] text-sm text-[#282D24] transition-all"
+                className="rounded-lg border-[#CAD7CA] focus-visible:border-[#2A6E3F] focus-visible:ring-[#2A6E3F]/20 h-10 bg-white text-sm text-[#142217] transition-all"
               />
               {passwordError && (
-                <p data-testid="error-password" className="text-xs text-[#C87D87] font-medium mt-1">
+                <p data-testid="error-password" className="text-xs text-[#DC2626] font-medium mt-1">
                   {passwordError}
                 </p>
               )}
             </div>
 
             <div className="space-y-1">
-              <Label htmlFor="confirm-password" className="text-[11px] uppercase tracking-wider text-[#636B58] font-semibold">
+              <Label htmlFor="confirm-password" className="text-[11px] uppercase tracking-wider text-[#3D5240] font-semibold">
                 Confirm Password
               </Label>
               <Input
@@ -212,12 +212,12 @@ export default function RegisterPage() {
                   if (authError) setAuthError("");
                 }}
                 placeholder="Re-enter password"
-                className="rounded-lg border-[#EFE7DE] focus-visible:border-[#6B7556] focus-visible:ring-[#6B7556]/20 h-10 bg-[#FCFAF8] text-sm text-[#282D24] transition-all"
+                className="rounded-lg border-[#CAD7CA] focus-visible:border-[#2A6E3F] focus-visible:ring-[#2A6E3F]/20 h-10 bg-white text-sm text-[#142217] transition-all"
               />
               {confirmPasswordError && (
                 <p
                   data-testid="error-confirm-password"
-                  className="text-xs text-[#C87D87] font-medium mt-1"
+                  className="text-xs text-[#DC2626] font-medium mt-1"
                 >
                   {confirmPasswordError}
                 </p>
@@ -227,18 +227,18 @@ export default function RegisterPage() {
             <Button
               type="submit"
               data-testid="register-submit"
-              className="w-full rounded-lg bg-[#6B7556] hover:bg-[#586146] text-white h-10 text-xs font-semibold uppercase tracking-wider transition-all shadow-xs active:scale-95 cursor-pointer mt-2"
+              className="w-full rounded-lg bg-[#2A6E3F] hover:bg-[#215531] text-white h-10 text-xs font-semibold uppercase tracking-wider transition-all shadow-xs shadow-[#2A6E3F]/25 active:scale-95 cursor-pointer mt-2"
               disabled={isSubmitting}
             >
               {isSubmitting ? "Creating Account..." : "Register"}
             </Button>
 
             <div className="pt-2 text-center">
-              <p className="text-xs text-[#636B58]">
+              <p className="text-xs text-[#3D5240]">
                 Already have an account?{" "}
                 <Link
                   href="/login"
-                  className="text-[#6B7556] hover:text-[#586146] font-semibold underline underline-offset-4 decoration-[#E5BCA9]"
+                  className="text-[#2A6E3F] hover:text-[#215531] font-semibold underline underline-offset-4 decoration-[#80C8B7]"
                 >
                   Login here
                 </Link>
