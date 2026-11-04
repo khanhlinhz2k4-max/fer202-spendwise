@@ -56,13 +56,13 @@ export function Header() {
                 </Button>
               </Link>
 
-              {/* Logout Button (High Contrast Crisp Crimson) */}
+              {/* Logout Button (Subtle outline, soft red on hover) */}
               <Button
                 data-testid="btn-logout"
-                variant="destructive"
+                variant="outline"
                 size="sm"
                 onClick={handleLogout}
-                className="rounded-lg bg-[#DC2626] hover:bg-[#B91C1C] text-white transition-all px-3.5 h-8.5 font-semibold text-xs shadow-2xs cursor-pointer"
+                className="rounded-lg border-[#CAD7CA] text-[#4A604D] hover:bg-red-50 hover:text-red-600 hover:border-red-200 transition-all px-3.5 h-8.5 font-semibold text-xs shadow-2xs cursor-pointer"
               >
                 Logout
               </Button>

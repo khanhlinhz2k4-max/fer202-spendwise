@@ -655,10 +655,10 @@ export default function ExpensesPage() {
 
                         <Button
                           data-testid="btn-delete-expense"
-                          variant="destructive"
+                          variant="outline"
                           size="sm"
                           onClick={() => handleDelete(expense.id)}
-                          className="rounded-lg bg-transparent hover:bg-[#FEE2E2] text-[#DC2626] border border-[#FCA5A5] hover:border-[#DC2626] px-3 h-8 text-xs font-semibold transition-all cursor-pointer shadow-2xs active:scale-95 shrink-0 w-[64px]"
+                          className="rounded-lg bg-transparent border-[#D6E0D6] text-[#6B7E62] hover:bg-red-50 hover:text-red-600 hover:border-red-200 px-3 h-8 text-xs font-semibold transition-all cursor-pointer shadow-2xs active:scale-95 shrink-0 w-[64px]"
                         >
                           Delete
                         </Button>
